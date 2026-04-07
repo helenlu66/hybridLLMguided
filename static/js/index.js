@@ -29,17 +29,28 @@ $(document).ready(function() {
 
     });
 
-    var options = {
-			slidesToScroll: 1,
-			slidesToShow: 3,
-			loop: true,
-			infinite: true,
-			autoplay: false,
-			autoplaySpeed: 3000,
+    var videoCarouselOptions = {
+      slidesToScroll: 1,
+      slidesToShow: 3,
+      loop: true,
+      infinite: true,
+      autoplay: false,
+      autoplaySpeed: 3000,
     }
 
-		// Initialize all div with carousel class
-    var carousels = bulmaCarousel.attach('.carousel', options);
+    var figureCarouselOptions = {
+      slidesToScroll: 1,
+      slidesToShow: 1,
+      loop: true,
+      infinite: true,
+      autoplay: false,
+      autoplaySpeed: 3000,
+    }
+
+    // Initialize the video and figure carousels with different sizing behavior.
+    var videoCarousels = bulmaCarousel.attach('#results-carousel', videoCarouselOptions);
+    var figureCarousels = bulmaCarousel.attach('#figure-carousel', figureCarouselOptions);
+    var carousels = videoCarousels.concat(figureCarousels);
 
     // Loop on each carousel initialized
     for(var i = 0; i < carousels.length; i++) {

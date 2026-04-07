@@ -51,6 +51,14 @@ body {
     font-family: 'Google Sans', sans-serif;
 }
 
+@media screen and (min-width: 1216px) {
+  .publication-title.title.is-1 {
+    white-space: nowrap;
+    font-size: 1rem;
+    line-height: 1.25;
+  }
+}
+
 .publication-authors {
     font-family: 'Google Sans', sans-serif;
 }
@@ -111,7 +119,11 @@ body {
 }
 
 .results-carousel {
-  overflow: hidden;
+  overflow: visible;
+}
+
+.results-carousel .slider-container {
+  padding-bottom: 2.2rem;
 }
 
 .results-carousel .item {
@@ -123,8 +135,82 @@ body {
   font-size: 0;
 }
 
+.results-carousel figure {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
 .results-carousel video {
   margin: 0;
+  flex-shrink: 0;
+}
+
+.results-carousel img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+#figure-carousel .item img {
+  width: 100%;
+  height: clamp(280px, 48vw, 460px);
+  object-fit: contain;
+  background-color: #fff;
+  border: 1px solid #bbb;
+  border-radius: 10px;
+}
+
+#figure-carousel .item {
+  border: none;
+}
+
+.section .columns.is-multiline img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+}
+
+.figure-scroll-row {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 12px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding-bottom: 8px;
+  -webkit-overflow-scrolling: touch;
+}
+
+.figure-scroll-row img {
+  display: block;
+  width: auto;
+  height: 280px;
+  border-radius: 10px;
+  flex: 0 0 auto;
+}
+
+.results-carousel figcaption {
+  padding: 8px;
+  font-size: 13px;
+  background-color: #f5f5f5;
+  border-top: 1px solid #eee;
+  text-align: center;
+  flex-shrink: 0;
+  pointer-events: none;
+  position: relative;
+  z-index: 1;
+}
+
+.results-carousel .slider-navigation-previous,
+.results-carousel .slider-navigation-next,
+.results-carousel .slider-pagination {
+  z-index: 20;
+}
+
+.results-carousel .slider-pagination {
+  bottom: 0.3rem;
 }
 
 
