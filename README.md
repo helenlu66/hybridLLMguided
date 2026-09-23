@@ -1,6 +1,6 @@
 # Nerfies
 
-This is the repository that contains source code for the [Nerfies website](https://nerfies.github.io).
+This repository contains the source code for the [Hybrid LLM-guided website](https://helenlu66.github.io/hybridLLMguided/).
 
 If you find Nerfies useful for your work please cite:
 ```
