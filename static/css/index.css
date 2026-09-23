@@ -205,6 +205,19 @@ body {
   bottom: 0.3rem;
 }
 
+.figure-caption,
+.results-carousel .figure-caption {
+  margin-top: 0.75rem;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  text-align: left;
+}
+
+#figure-carousel .figure-caption {
+  margin-top: 0;
+  padding: 1rem;
+}
+
 
 .interpolation-panel {
   background: #f5f5f5;

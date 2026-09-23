@@ -83,15 +83,15 @@
                 </a>
               </span>
               <!-- Code Link. -->
-              <!-- <span class="link-block">
-                <a href="https://github.com/google/nerfies"
+              <span class="link-block">
+                <a href="https://github.com/helenlu66/NoveltyAdapt"
                    class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
                       <i class="fab fa-github"></i>
                   </span>
                   <span>Code</span>
-                  </a>
-              </span> -->
+                </a>
+              </span>
             </div>
 
           </div>
@@ -106,10 +106,10 @@
     <div class="hero-body">
       <figure class="image is-centered">
         <img src="./static/images/plan-learn-execute%20loop.png" alt="Plan, learn, execute illustration">
+        <figcaption class="figure-caption">
+          <strong>The plan-learn-execute loop.</strong> The hybrid planner asks the LLM to define missing operators in PDDL and combines them with existing operators to find a plan. When a new operator has no execution policy, its ordered effects become sub-goals for reinforcement learning. Each reward function candidate guides a separate agent; weaker candidates are periodically removed, and the best policy is saved as the operator's executor.
+        </figcaption>
       </figure>
-      <p>
-        The plan-learn-execute loop. The Hybrid LLM Symbolic planner prompts the LLM to structurally define the missing operator(s) in PDDL. When the learn-execute loop encounters a newly defined operator for which an executor policy does not yet exist, it prompts the LLM to generate dense reward shaping function candidates and launches RL agents to learn a policy for the operator. 
-      </p>
     </div>
   </div>
 </section>
@@ -196,16 +196,28 @@
         <h2 class="title is-3">Novelties Injected</h2>
         <div id="figure-carousel" class="carousel results-carousel">
           <div class="item item-kitchen">
-            <img src="./static/images/kitchen.png" alt="Kitchen scene figure">
+            <figure>
+              <img src="./static/images/kitchen.png" alt="Kitchen scene figure">
+              <figcaption class="figure-caption"><strong>Kitchen.</strong> A novel lid blocks access to the pot, requiring a new pick-up-lid-from-pot operator. This is the easiest discovery setting because random exploration can displace the lid and reach a state from which the existing planner can finish the task.</figcaption>
+            </figure>
           </div>
           <div class="item item-coffee-box">
-            <img src="./static/images/coffee_box.png" alt="Coffee box figure">
+            <figure>
+              <img src="./static/images/coffee_box.png" alt="Coffee box figure">
+              <figcaption class="figure-caption"><strong>Coffee-Box.</strong> The coffee pod appears inside a novel box. Existing skills retrieve objects from the tabletop, so the planner must add a pick-up-from-open-box operator and the robot must learn to retrieve the pod from the container.</figcaption>
+            </figure>
           </div>
           <div class="item item-nut-assembly">
-            <img src="./static/images/nut_assembly.png" alt="Nut assembly figure">
+            <figure>
+              <img src="./static/images/nut_assembly.png" alt="Nut assembly figure">
+              <figcaption class="figure-caption"><strong>Nut Assembly.</strong> A square nut is placed on a novel round peg. Tabletop pick-up operators cannot handle this starting state; the missing pick-up-nut-from-peg operator enables the robot to remove the nut before continuing the assembly task.</figcaption>
+            </figure>
           </div>
           <div class="item item-coffee-drawer">
-            <img src="./static/images/coffee_drawer.png" alt="Coffee drawer figure">
+            <figure>
+              <img src="./static/images/coffee_drawer.png" alt="Coffee drawer figure">
+              <figcaption class="figure-caption"><strong>Coffee-Drawer.</strong> The pod is hidden inside a closed drawer. This is the hardest discovery setting: the robot needs both open-drawer and pick-up-from-open-drawer operators, and random exploration is unlikely to discover the required sequence.</figcaption>
+            </figure>
           </div>
         </div>
       </div>
@@ -265,6 +277,9 @@
             </tbody>
           </table>
         </div>
+        <p class="figure-caption">
+          <strong>Identifying missing operators.</strong> Across ten runs per domain, the hybrid planner succeeds in every Kitchen, Nut Assembly, and Coffee-Box run and seven Coffee-Drawer runs. Operator Discovery (OD) succeeds only in Kitchen. OD searches through reinforcement learning, with each run capped at one million timesteps; the hybrid planner instead uses LLM suggestions and symbolic search to identify the missing operators.
+        </p>
       </div>
     </div>
   </div>
@@ -277,10 +292,20 @@
         <h2 class="title is-3">LLM-Guided Subgoal Learning</h2>
         <div class="columns is-multiline is-centered">
           <div class="column is-full">
-            <img src="./static/images/sr_pr_barplots.png" alt="Success and progress rate bar plots">
+            <figure>
+              <img src="./static/images/sr_pr_barplots.png" alt="Success and progress rate bar plots">
+              <figcaption class="figure-caption">
+                <strong>Success and progress across learned operators.</strong> LLM-Guided (LG) sub-goal learning is compared with LEAGUE-Sparse (LS), which rewards completion of all operator effects, and Reward Machine (RM), which provides sub-goal bonuses. Success measures completion of the operator; progress is the percentage of sub-goals achieved. Results are averaged over ten seeds, with error bars showing the standard error of the mean. LLM-generated reward shaping helps guide exploration between sub-goals, producing higher average success and progress than the baselines across the operators shown.
+              </figcaption>
+            </figure>
           </div>
           <div class="column is-full">
-            <img src="./static/images/candidates_eval_curves.png" alt="Candidates evaluation curves">
+            <figure>
+              <img src="./static/images/candidates_eval_curves.png?v=ae92603d3618" alt="Candidate reward function evaluation curves showing success rate over training timesteps">
+              <figcaption class="figure-caption">
+                <strong>Reward function candidates during training.</strong> Each panel tracks sub-goal success rate over training timesteps. The LLM generates three reward shaping candidates, with semantically identical candidates filtered out, so some sub-goals have fewer alternatives. The worst-performing candidate is eliminated at intervals of 200,000 timesteps. At the end of each phase, the best candidate and its policy are retained; the next phase reuses the selected reward logic for earlier sub-goals while exploring new candidates for the current one.
+              </figcaption>
+            </figure>
           </div>
         </div>
       </div>
@@ -311,7 +336,7 @@
          href="./static/videos/nerfies_paper.pdf">
         <i class="fas fa-file-pdf"></i>
       </a>
-      <a class="icon-link" href="https://github.com/keunhong" class="external-link" disabled>
+      <a class="icon-link external-link" href="https://github.com/helenlu66/NoveltyAdapt" aria-label="NoveltyAdapt code on GitHub">
         <i class="fab fa-github"></i>
       </a>
     </div>
